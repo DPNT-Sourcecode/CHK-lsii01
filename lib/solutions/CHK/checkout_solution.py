@@ -120,6 +120,9 @@ def triple_offers(item_counts, item_triple_offers, item_base_prices):
         total += 45
         for i in range(3):
             item = triple_items[i]
+            item_counts[item] -= 1
+            if item_counts[item] == 0:
+                del item_counts[item]
 
         triple_items = triple_items[3::]
    
@@ -216,6 +219,7 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
 
 
 
