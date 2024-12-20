@@ -50,7 +50,8 @@ def checkout(skus):
             else:
                 free_fs = item_counts['F'] // 2 - 1
             item_counts['F'] -= free_fs
-            
+        
+
 
 
         total = calculate_checkout(item_counts, item_base_prices)
@@ -82,7 +83,6 @@ def calculate_checkout(item_counts,item_base_prices):
 
 
     return total
-
                
     
 class TestChk():
@@ -117,5 +117,6 @@ class TestChk():
     def test_checkout_6F(self):
         assert checkout('FFFFFF') == 40
          
+
 
 
