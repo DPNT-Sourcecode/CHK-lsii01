@@ -146,6 +146,8 @@ class TestChk():
         assert checkout('HHHHHHHHHHHHH') == 110
     def test_checkout_3U(self):
         assert checkout('UUU') == 120
+    def test_checkout_3R_1Q(self):
+        assert checkout('RRRQ') == 150
 
     
 
