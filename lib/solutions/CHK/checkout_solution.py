@@ -26,45 +26,13 @@ def checkout(skus):
             
             item_counts[item] = item_counts.get(item, 0) + 1
 
-            running_item_counts[item] = running_item_counts.get(item, 0) + 1
-
-        
-            #Handle E buy 2 e get one free
-            if running_item_counts.get('E', 0) == 2:
-                #check if the item B in running count is 2 or over as special offer will have been applied
-                if running_item_counts.get('B', 0) >= 2:
-                     total -= item_special_offers['B'][2]
-                     total += item_base_prices['B']
-
-                item_counts['B'] = item_counts.get('B', 0) - 1
-                running_item_counts['E'] = 0
-
-            #Handle special offers
-            if item == 'B':
-                if item_counts[item] == 2:
-                    total += item_special_offers[item][2]
-                    item_counts[item] = 0
-            elif item == 'A':
-                if item_counts[item] == 3:
-                     total += item_special_offers[item][3]
-                     item_counts[item] = 0
-                     
-                if running_item_counts[item] == 5:
-                     total += item_special_offers[item][5]
-                     total -= item_special_offers[item][3]
-                     running_item_counts[item] = 0
-                     item_counts[item] = 0
+        total = handle_special_offers(item_counts)
 
 
-
-        for item, count in item_counts.items():
-            if count > 0:
-                total += count * item_base_prices[item]
-            
         return total
 
 def handle_special_offers(item_counts):
-    for item, count in item_counts.values():
+    for item, count in item_counts.items():
         if item == 'A':
             if count >= 3 and count < 5:
                 if count % 3 == 0:
@@ -78,9 +46,14 @@ def handle_special_offers(item_counts):
                 return count * 50
             
         elif item =='B':
+             #need to handle E special offer
+             if item_counts.get('E', 0) % 2 == 0 and item_counts.get('E', 0)!= 0:
+                  count -= item_counts.get('E', 0 ) / 2
              if count >= 2:
                   if count % 2 == 0:
                        return count / 2 * 45
+                  else:
+                       return (count / 2 * 45) + (count % 2 * 30)
 
                
      
@@ -108,6 +81,7 @@ class TestChk():
     def test_checkout_ABCDECBAABCABBAAAEEAA(self):
             assert checkout('ABCDECBAABCABBAAAEEAA') == 665
          
+
 
 
 
