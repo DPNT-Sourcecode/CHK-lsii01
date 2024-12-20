@@ -76,10 +76,8 @@ def checkout(skus):
                 triple_sets[item_base_prices[item]] = triple_sets.get(item_base_prices[item], 0) + 1
                 #this stores the value of that item in a dictionary and increments the counts
         
-        if sum(triple_sets.values()) > 2:
-            #a set exists
-            totalSets = sum(triple_sets.values()) // 3
-            for i in range(totalSets):
+        setCount = sum(triple_sets.values()) // 3
+                
                 
             
 
@@ -221,6 +219,7 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
 
 
 
