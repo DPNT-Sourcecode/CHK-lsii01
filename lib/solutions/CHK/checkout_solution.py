@@ -22,14 +22,14 @@ def checkout(skus):
         'P': 50,
         'Q': 30,
         'R': 50,
-        'S': 30,
+        'S': 20,
         'T': 20,
         'U': 40,
         'V': 50,
         'W': 20,
-        'X': 90,
-        'Y': 10,
-        'Z': 50
+        'X': 17,
+        'Y': 20,
+        'Z': 21
         }
 
         item_triple_offers = {'S','T','X','Y','Z'}
@@ -68,17 +68,12 @@ def checkout(skus):
             if item in item_triple_offers:
                 triple_item_counts[item] = triple_item_counts.get(item, 0 ) + 1
                 triple_count += 1
-                print(triple_count)
                 if triple_count == 3:
                     total += 45
-                    print(total)
-                    triple_count = 0
                     while triple_count > 0:
-                        highestItem = max(triple_item_counts, key=triple_item_counts.get)
-                        triple_item_counts[highestItem] -= 1
+                        highestItem = max(triple_item_counts)
+                        item_counts[highestItem] -= 1
                         triple_count -= 1
-
-
                     triple_item_counts = {}
 
 
@@ -86,7 +81,6 @@ def checkout(skus):
         bogof_offer(item_counts, item_bogof_offers)
         total += special_offer(item_counts,item_special_offers)
 
-        print(item_counts)
         total += calculate_checkout(item_counts, item_base_prices)
 
 
@@ -186,6 +180,7 @@ class TestChk():
         assert checkout('VVVVV') == 220
     def test_checkout_3V_3V_1V(self):
         assert checkout('VVVVVVV') == 310
-
     def test_checkout_3S(self):
         assert checkout('SSS') == 45
+    def test_checkout_4S(self):
+        assert checkout('SSSS') == 65
