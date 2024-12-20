@@ -55,10 +55,7 @@ def calculate_checkout(item_counts,item_base_prices):
             #need to handle E special offer
             e_count = item_counts.get('E', 0)
             if e_count >= 2:
-                if count > e_count:
-                    count -= e_count // 2
-                else:
-                     count = 0
+                
 
                 
                  
@@ -98,6 +95,7 @@ class TestChk():
     def test_checkout_ABCDECBAABCABBAAAEEAA(self):
             assert checkout('ABCDECBAABCABBAAAEEAA') == 665
          
+
 
 
 
