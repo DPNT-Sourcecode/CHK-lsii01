@@ -30,7 +30,7 @@ def checkout(skus):
 
         
             #Handle E buy 2 e get one free
-            if item_counts.get('E', 0) ==2:
+            if item_counts.get('E', 0) == 2:
                 item_counts['B'] = item_counts.get('B', 0) - 1
 
             #Handle special offers
@@ -40,14 +40,20 @@ def checkout(skus):
             elif item == 'A':
                 if item_counts[item] == 3:
                      total += item_special_offers[item][3]
-                elif item_counts[item] == 5:
-                     total -= item_special_offers[item][3]
+                     item_counts[item] = 0
+                     
+                if running_item_counts[item] == 5:
                      total += item_special_offers[item][5]
+                     total -= item_special_offers[item][3]
+                     running_item_counts[item] = 0
                      item_counts[item] = 0
 
 
+
         for item, count in item_counts.items():
-            total += count * item_base_prices[item]
+            if count > 0:
+                total += count * item_base_prices[item]
+            
         return total
 
 
@@ -66,6 +72,7 @@ class TestChk():
          assert checkout('EEB') == 80
     def test_checkout_2E_2B(self):
          assert checkout('EEBB') == 110
+
 
 
 
