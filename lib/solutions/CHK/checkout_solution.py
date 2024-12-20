@@ -26,6 +26,9 @@ def checkout(skus):
             
             item_counts[item] = item_counts.get(item, 0) + 1
 
+        #handle e count selection before getting to the checkout calculation
+        if 'E' in item_counts.keys() and 'B' in item_counts.keys():
+
         total = calculate_checkout(item_counts, item_base_prices)
 
 
@@ -35,14 +38,14 @@ def calculate_checkout(item_counts,item_base_prices):
     total = 0
     
     for item, count in item_counts.items():
-        print(item)
         if item == 'A':
+            
             if count >= 3 and count < 5:
                 if count % 3 == 0:
                     total += count / 3 * 130
                 else:
                     total += (count // 3 * 130) + (count % 3 * 50)
-                     
+    
             elif count >= 5:  
                 if count % 5 == 0:
                     total += count / 5 * 200
@@ -53,13 +56,11 @@ def calculate_checkout(item_counts,item_base_prices):
             
         elif item =='B':
             #Handle E special offer
-            if item_counts.get('E', 0) >= 2:
-                count = count - item_counts['E'] // 2
-            if count % 2 == 0:
-                total += count / 2 * 45
+            if count >= 2:
+                 total += (count //2 * 45) + (count % 2 * 30)
             else:
-                
-                total += (count // 2*45) + (count %2 * 30)
+                 total += count * 30
+            
         else:
              total += count * item_base_prices[item]
 
@@ -92,13 +93,4 @@ class TestChk():
     def test_checkout_ABCDECBAABCABBAAAEEAA(self):
             assert checkout('ABCDECBAABCABBAAAEEAA') == 665
          
-
-
-
-
-
-
-
-
-
 
