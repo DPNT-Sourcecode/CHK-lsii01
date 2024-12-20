@@ -162,3 +162,7 @@ class TestChk():
         assert checkout('VVV') == 130   
     def test_checkout_2V(self):
         assert checkout('VV') == 90
+    def test_checkout_3V_2V(self):
+        assert checkout('VVVVV') == 220
+    def test_checkout_3V_3V_1V(self):
+        assert checkout('VVVVVVV') == 310
