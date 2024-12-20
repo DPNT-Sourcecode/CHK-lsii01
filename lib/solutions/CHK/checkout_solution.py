@@ -77,7 +77,7 @@ def checkout(skus):
                 triple_count -=1
                 sets_of_3 +=1
             if sets_of_3 == 3:
-                total +=45
+                total += 45
                 sets_of_3 = 0
             
             
@@ -209,5 +209,6 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
 
 
