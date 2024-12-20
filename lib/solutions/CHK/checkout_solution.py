@@ -63,12 +63,26 @@ def checkout(skus):
             
         return total
 
-def handle_special_offers(item, item_count):
-     if item == 'A':
-          if item_count % 3 == 0:
-               return item_count / 3 * 130
-          elif item_count % 5 == 0:
-               return item_count / 5 * 200
+def handle_special_offers(item_counts):
+    for item, count in item_counts.values():
+        if item == 'A':
+            if count >= 3 and count < 5:
+                if count % 3 == 0:
+                    return count / 3 * 130
+            elif count >= 5:  
+                if count % 5 == 0:
+                    return count / 5 * 200
+                else:
+                    return (count / 5 * 200) + (count % 5 * 50)
+            else:
+                return count * 50
+            
+        elif item =='B':
+             if count >= 2:
+                  if count % 2 == 0:
+                       return count / 2 * 45
+
+               
      
 
 
@@ -94,6 +108,7 @@ class TestChk():
     def test_checkout_ABCDECBAABCABBAAAEEAA(self):
             assert checkout('ABCDECBAABCABBAAAEEAA') == 665
          
+
 
 
 
