@@ -115,6 +115,10 @@ def triple_offers(item_counts, item_triple_offers, item_base_prices):
     for value in sorted(triple_offer_value_counts.keys(), reverse=True):
         count = triple_offer_value_counts[value]
 
+        while count >= 3:
+            total += 45
+            count -= 3
+
 
 
 
@@ -206,3 +210,4 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
