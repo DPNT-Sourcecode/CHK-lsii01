@@ -10,6 +10,10 @@ def checkout(skus):
         'D': 15,
         'E': 40
         }
+        item_special_offers = {
+             'A' : {3: 130, 5: 200},
+             'B' : {2: 45},
+        }
         
 
         item_counts = {}
@@ -20,14 +24,14 @@ def checkout(skus):
             
             item_counts[item] = item_counts.get(item, 0) + 1
 
+            # Handle special offers
+
+
 
            
 
         for item, count in item_counts.items():
             total += count * item_base_prices[item]
         return total
-
-
-
 
 
