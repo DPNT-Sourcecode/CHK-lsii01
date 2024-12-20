@@ -36,7 +36,9 @@ def checkout(skus):
                  item_counts['B'] = 0
         
         if 'F' in item_counts.keys() and item_counts.get('F',0) >= 3:
-             item_counts['F'] -= item_counts['F'] // 2
+             #its however many sets of 2 - 1 is the amount of free Fs you can have
+             free_fs = item_counts['F'] // 2
+             item_counts['F'] = free_fs - 1
 
 
         total = calculate_checkout(item_counts, item_base_prices)
@@ -97,8 +99,13 @@ class TestChk():
     def test_checkout_3F(self):
         assert checkout('FFF') == 20
     def test_checkout_4F(self):
-         assert checkout('FFFF') == 30
+        assert checkout('FFFF') == 30
+    def test_checkout_5F(self):
+        assert checkout('FFFFF') == 40
+    def test_checkout_6F(self):
+        assert checkout('FFFFFF') == 40
          
+
 
 
 
