@@ -69,30 +69,6 @@ def checkout(skus):
             item_counts[item] = item_counts.get(item, 0) + 1
 
 
-            #check for triple sets Z is ihghest value so we need to remove instances of that first
-            if item in item_triple_offers:
-                triple_sets[item_base_prices[item]] = triple_sets.get(item_base_prices[item], 0) + 1
-                #this stores the value of that item in a dictionary and increments the counts
-        
-        setCount = sum(triple_sets.values()) // 3
-
-
-
-                
-                
-            
-
-            
-
-        
-
-            
-            
-        
-
-
-        
-
         bogof_offer(item_counts, item_bogof_offers)
         total += special_offer(item_counts,item_special_offers)
 
@@ -128,6 +104,16 @@ def bogof_offer(item_counts, item_bogof_offers):
             else:
                 item_counts[deal['letter']] = 0
 
+
+def triple_offers(item_counts, item_triple_offers, item_base_prices):
+    total = 0
+    triple_offer_value_counts = {}
+    for item, count in item_counts.items():
+        if item in item_triple_offers:
+            value = item_base_prices[item]
+            triple_offer_value_counts[value] = triple_offer_value_counts.get(value, 0 ) + count
+    for value in sorted(triple_offer_value_counts.keys(), reverse=True):
+        count = triple_offer_value_counts[value]
 
 
 
