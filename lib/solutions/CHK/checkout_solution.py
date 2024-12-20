@@ -88,13 +88,13 @@ class TestChk():
     def test_checkout_2E_2B(self):
          assert checkout('EEBB') == 110
     def test_checkout_BEBEEE(self):
-            assert checkout('BEBEEE') == 160
+        assert checkout('BEBEEE') == 160
     def test_checkout_ABCDECBAABCABBAAAEEAA(self):
-            assert checkout('ABCDECBAABCABBAAAEEAA') == 665
+        assert checkout('ABCDECBAABCABBAAAEEAA') == 665
     def test_checkout_2F(self):
-         assert checkout('FF') == 20
+        assert checkout('FF') == 20
     def test_checkout_3F(self):
-         assert checkout('FFF') == 20
+        assert checkout('FFF') == 20
          
 
 
