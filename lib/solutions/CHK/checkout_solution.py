@@ -70,10 +70,12 @@ def checkout(skus):
         return total
 
 def special_offer(item_counts, item_special_offers):
-    total =0
+    total = 0
     for item, deals in item_special_offers.items():
+        if item not in item_counts.keys():
+            continue
           #iterate backwarsd through the deals as they are sorted
-        for deals in sorted(deals.keys(), reverse=True):
+        for deals in sorted(deals.keys()):
             count = item_counts[item] // deals
             if count > 0:
                 total += count * item_special_offers[item][deals]
@@ -139,6 +141,7 @@ class TestChk():
         assert checkout('FFFFFF') == 40
 
          
+
 
 
 
