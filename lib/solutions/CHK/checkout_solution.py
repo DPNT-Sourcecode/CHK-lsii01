@@ -32,7 +32,8 @@ def checkout(skus):
         'Z': 21
         }
 
-        item_triple_offers = {'S','T','X','Y','Z'}
+        item_triple_offers = {20:'S',20 :'T',17 :'X',20: 'Y', 21:'Z'}
+
         
         item_special_offers = {
              'A': {3: 130, 5: 200},
@@ -68,26 +69,17 @@ def checkout(skus):
                 return -1
             
             item_counts[item] = item_counts.get(item, 0) + 1
+
+
+            #check for triple sets Z is ihghest value so we need to remove instances of that first
             
 
-            if item in item_triple_offers:
-                triple_sets[item] = triple_sets.get(item, 0 ) + 1
-                set_counter +=1
-        
-        if set_counter > 2:
-            #a set exists and we need to find the highest value set of 3 keys
-            #i.e remove all keys with the highest value first and then the next highest value
-            for item in sorted(triple_sets, reverse=True):
-                if triple_sets[item] > 0:
-                    triple_sets[item] -= 1
-                    set_counter -= 1
-                    totalSets +=1 
-                    item_counts[item] -= 1
-                    if set_counter == 2:
-                        break
-                
-        total += totalSets * 45
+            
 
+        
+
+            
+            
         
 
 
@@ -220,4 +212,5 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
 
