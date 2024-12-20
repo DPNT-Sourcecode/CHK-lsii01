@@ -18,7 +18,11 @@ def checkout(skus):
         }
 
         item_bogof_offers = {
-             
+             'E': {'letter': 'B', 'needed': 2, 'free': 1},
+             'F': {'letter':'F', 'needed':3, 'free': 1 },
+             'N': {'letter':'M', 'needed':3, 'free': 1 },
+             'R': {'letter':'Q', 'needed':3, 'free': 1},
+             'U': {'letter': 'U', 'needed': 3, 'free': 1}
         }
         
 
@@ -113,4 +117,5 @@ class TestChk():
     def test_checkout_6F(self):
         assert checkout('FFFFFF') == 40
          
+
 
