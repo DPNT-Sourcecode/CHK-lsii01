@@ -35,29 +35,25 @@ def checkout(skus):
             
             item_counts[item] = item_counts.get(item, 0) + 1
 
-        #handle e count selection before getting to the checkout calculation
-        if 'E' in item_counts.keys() and 'B' in item_counts.keys():
-            count = item_counts['E'] // 2
-            if item_counts['B'] - count > 0:
-                 item_counts['B'] -= count
-            else:
-                 item_counts['B'] = 0
+        bogof_offer(item_counts, item_bogof_offers)
         
-        if 'F' in item_counts.keys() and item_counts.get('F',0) >= 3:
-             #its however many sets of 2 - 1 is the amount of free Fs you can have
-            if item_counts['F'] == 3:
-                 free_fs = 1
-            else:
-                free_fs = item_counts['F'] // 2 - 1
-            item_counts['F'] -= free_fs
-        
-
-
-
         total = calculate_checkout(item_counts, item_base_prices)
 
 
         return total
+
+def bogof_offer(item_counts, item_bogof_offers):
+    for item, deal in item_bogof_offers.items():
+        if item in item_counts.keys() and deal['letter'] in item_counts.keys():
+            count = item_counts[item] // deal['needed']
+            if item_counts[deal['letter']] - count > 0:
+                item_counts[deal['letter']] -= count
+            else:
+                item_counts[deal['letter']] = 0
+
+        
+
+
 
 def calculate_checkout(item_counts,item_base_prices):
     total = 0
@@ -117,6 +113,7 @@ class TestChk():
     def test_checkout_6F(self):
         assert checkout('FFFFFF') == 40
          
+
 
 
 
