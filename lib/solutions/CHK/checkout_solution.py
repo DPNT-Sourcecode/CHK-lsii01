@@ -31,6 +31,8 @@ def checkout(skus):
         'Y': 10,
         'Z': 50
         }
+
+        item_triple_offers = {'S','T','X','Y','Z'}
         
         item_special_offers = {
              'A': {3: 130, 5: 200},
@@ -53,6 +55,7 @@ def checkout(skus):
         
 
         item_counts = {}
+        triple_count = 0
         total = 0
 
         for item in skus:
@@ -60,6 +63,8 @@ def checkout(skus):
                 return -1
             
             item_counts[item] = item_counts.get(item, 0) + 1
+            if item in item_triple_offers:
+                triple_count += 1
 
         bogof_offer(item_counts, item_bogof_offers)
         total = special_offer(item_counts,item_special_offers)
