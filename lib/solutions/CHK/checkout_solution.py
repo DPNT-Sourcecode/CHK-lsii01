@@ -51,9 +51,6 @@ def bogof_offer(item_counts, item_bogof_offers):
             else:
                 item_counts[deal['letter']] = 0
 
-        
-
-
 
 def calculate_checkout(item_counts,item_base_prices):
     total = 0
@@ -113,6 +110,7 @@ class TestChk():
     def test_checkout_6F(self):
         assert checkout('FFFFFF') == 40
          
+
 
 
 
