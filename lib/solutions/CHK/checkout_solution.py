@@ -27,11 +27,18 @@ def checkout(skus):
             # Handle special offers
 
 
+            #Handle E buy 2 e get one free
+            if item_counts.get('E', 0) ==2:
+                item_counts['B'] = item_counts.get('B',0) - 1
+                 
+
+
 
            
 
         for item, count in item_counts.items():
             total += count * item_base_prices[item]
         return total
+
 
 
