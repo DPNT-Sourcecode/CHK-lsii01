@@ -32,8 +32,8 @@ def checkout(skus):
         'Z': 21
         }
 
-        item_triple_offers = {20:'S',20 :'T',17 :'X',20: 'Y', 21:'Z'}
-
+        item_triple_offers = {'S','T','X','Y','Z'}
+        
         
         item_special_offers = {
              'A': {3: 130, 5: 200},
@@ -72,6 +72,15 @@ def checkout(skus):
 
 
             #check for triple sets Z is ihghest value so we need to remove instances of that first
+            if item in item_triple_offers:
+                triple_sets[item_base_prices[item]] = triple_sets.get(item_base_prices[item], 0) + 1
+                #this stores the value of that item in a dictionary and increments the counts
+        
+        if sum(triple_sets.values()) > 2:
+            #a set exists
+            totalSets = sum(triple_sets.values()) // 3
+            for i in range(totalSets):
+                
             
 
             
@@ -212,5 +221,6 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
 
 
