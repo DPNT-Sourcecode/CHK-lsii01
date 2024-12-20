@@ -33,8 +33,8 @@ def checkout(skus):
         }
         
         item_special_offers = {
-             'A' : {3: 130, 5: 200},
-             'B' : {2: 45},
+             'A': {3: 130, 5: 200},
+             'B': {2: 45},
              'H': {5: 45, 10: 80},
              'K': {2: 150},
              'P': {5: 200},
@@ -67,6 +67,11 @@ def checkout(skus):
 
 
         return total
+
+def special_offer(item_counts, item_special_offers):
+     for item, deals in item_special_offers.items():
+          
+        
 
 def bogof_offer(item_counts, item_bogof_offers):
     for item, deal in item_bogof_offers.items():
@@ -136,3 +141,4 @@ class TestChk():
     def test_checkout_6F(self):
         assert checkout('FFFFFF') == 40
          
+
