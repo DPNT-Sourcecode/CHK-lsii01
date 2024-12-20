@@ -31,8 +31,7 @@ def checkout(skus):
 
             #Handle special offers
             if item == 'B':
-                print (item_special_offers.get(item, 0))
-                total += item_special_offers[item][1]
+                total += item_special_offers[item][2]
                 item_counts[item] = 0
             elif item == 'A':
                 if item_counts[item] == 3:
@@ -49,7 +48,14 @@ def checkout(skus):
 
 
 class TestChk():
-     def test_checkout_5B(self):
-          assert checkout('BBBBB') == 120
+    def test_checkout_5A(self):
+        assert checkout('AAAAA') == 200
+    def test_checkout_3A(self):
+         assert checkout('AAA') == 130
+    def test_checkout_4A(self):
+         assert checkout('AAAA') == 180
+    def test_checkout_2B(self):
+         assert checkout('BB') == 45
+
 
 
