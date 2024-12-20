@@ -16,33 +16,38 @@ def checkout(skus):
         }
         
 
-        item_counts = {}
+        running_item_counts = {}
+        total_item_counts = {}
         total = 0
         for item in skus:
             if not item in item_base_prices.keys():
                 return -1
             
-            item_counts[item] = item_counts.get(item, 0) + 1
+            running_item_counts[item] = running_item_counts.get(item, 0) + 1
+            total_item_counts[item] = total_item_counts.get(item, 0) + 1
 
         
             #Handle E buy 2 e get one free
-            if item_counts.get('E', 0) ==2:
-                item_counts['B'] = item_counts.get('B', 0) - 1
+            if running_item_counts.get('E', 0) ==2:
+                running_item_counts['B'] = running_item_counts.get('B', 0) - 1
 
             #Handle special offers
             if item == 'B':
                 total += item_special_offers[item][2]
-                item_counts[item] = 0
+                running_item_counts[item] = 0
             elif item == 'A':
-                if item_counts[item] == 3:
-                     total += item_special_offers[item][3]
-                elif item_counts[item] == 5:
+                if running_item_counts[item] == 3:
+                     total += item_special_offers[item]
+                     running_item_counts[item] = 0
+
+                elif total_item_counts[item] == 5:
                      total -= item_special_offers[item][3]
                      total += item_special_offers[item][5]
-                     item_counts[item] = 0
+                     running_item_counts[item] = 0
+                     total_item_counts[item] = 0
 
 
-        for item, count in item_counts.items():
+        for item, count in running_item_counts.items():
             total += count * item_base_prices[item]
         return total
 
@@ -62,6 +67,7 @@ class TestChk():
          assert checkout('EEB') == 80
     def test_checkout_2E_2B(self):
          assert checkout('EEBB') == 110
+
 
 
 
