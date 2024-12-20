@@ -16,6 +16,10 @@ def checkout(skus):
              'A' : {3: 130, 5: 200},
              'B' : {2: 45},
         }
+
+        item_bogof_offers = {
+             
+        }
         
 
         item_counts = {}
@@ -109,3 +113,4 @@ class TestChk():
     def test_checkout_6F(self):
         assert checkout('FFFFFF') == 40
          
+
