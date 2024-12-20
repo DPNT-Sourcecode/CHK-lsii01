@@ -35,6 +35,7 @@ def calculate_checkout(item_counts,item_base_prices):
     total = 0
     
     for item, count in item_counts.items():
+        print(item)
         if item == 'A':
             if count >= 3 and count < 5:
                 if count % 3 == 0:
@@ -61,7 +62,9 @@ def calculate_checkout(item_counts,item_base_prices):
                  total += (count // 2*45) + (count %2 * 30)
         else:
              total += count * item_base_prices[item]
-        return total
+
+             
+    return total
 
                
      
@@ -89,6 +92,7 @@ class TestChk():
     def test_checkout_ABCDECBAABCABBAAAEEAA(self):
             assert checkout('ABCDECBAABCABBAAAEEAA') == 665
          
+
 
 
 
