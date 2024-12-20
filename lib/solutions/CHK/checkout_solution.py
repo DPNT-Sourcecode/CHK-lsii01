@@ -60,9 +60,7 @@ def checkout(skus):
  
 
         total = 0
-        set_counter=0
-
-        totalSets=0
+        
 
         for item in skus:
             if not item in item_base_prices.keys():
@@ -77,6 +75,9 @@ def checkout(skus):
                 #this stores the value of that item in a dictionary and increments the counts
         
         setCount = sum(triple_sets.values()) // 3
+
+
+
                 
                 
             
@@ -219,6 +220,7 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
 
 
 
