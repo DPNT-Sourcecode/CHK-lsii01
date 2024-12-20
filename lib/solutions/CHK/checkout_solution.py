@@ -35,8 +35,9 @@ def checkout(skus):
 
             #Handle special offers
             if item == 'B':
-                total += item_special_offers[item][2]
-                item_counts[item] = 0
+                if item_counts[item] == 2:
+                    total += item_special_offers[item][2]
+                    item_counts[item] = 0
             elif item == 'A':
                 if item_counts[item] == 3:
                      total += item_special_offers[item][3]
@@ -72,11 +73,4 @@ class TestChk():
          assert checkout('EEB') == 80
     def test_checkout_2E_2B(self):
          assert checkout('EEBB') == 110
-
-
-
-
-
-
-
 
