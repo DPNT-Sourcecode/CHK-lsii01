@@ -184,3 +184,11 @@ class TestChk():
         assert checkout('SSS') == 45
     def test_checkout_4S(self):
         assert checkout('SSSS') == 65
+    def test_checkout_5S(self):
+        assert checkout('SSSSS') == 85
+    def test_checkout_6S(self):
+        assert checkout('SSSSSS') == 90
+    def test_checkout_1T_1S_1Y(self):
+        assert checkout('TSY') == 45
+    def test_checkout_1T(self):
+        assert checkout('T') == 20
