@@ -34,9 +34,7 @@ def checkout(skus):
                 #check if the item B in running count is 2 or over as special offer will have been applied
                 if running_item_counts.get('B', 0) >= 2:
                      total -= item_special_offers['B'][2]
-                     #reset the count to so that if another B is added the offer gets re applied
-                     item_counts['B'] = 1 
-
+            
                 item_counts['B'] = item_counts.get('B', 0) - 1
                 running_item_counts['E'] = 0
 
@@ -83,6 +81,7 @@ class TestChk():
     def test_checkout_2E_2B(self):
          assert checkout('EEBB') == 110
          
+
 
 
 
