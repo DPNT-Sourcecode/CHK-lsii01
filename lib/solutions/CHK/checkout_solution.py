@@ -18,7 +18,6 @@ def checkout(skus):
         
 
         item_counts = {}
-        running_item_counts = {}
         total = 0
 
         for item in skus:
@@ -52,15 +51,14 @@ def calculate_checkout(item_counts,item_base_prices):
                 total += count * 50
             
         elif item =='B':
-            e_count = item_counts.get('E', 0)
-            if e_count >= 2:
-                 count = count//e_count + count%e_count
-         
+            #Handle E special offer
+            if item_counts.get('E', 0) >= 2:
+                 count = count - item_counts['E'] // 2
             if count % 2 == 0:
-                total += count / 2 * 45
+                 total += count / 2 * 45
             else:
-                total+= ((count / 2 * 45) + (count % 2 * 30))
- 
+                
+                 total += (count // 2*45) + (count %2 * 30)
         else:
              total += count * item_base_prices[item]
         return total
@@ -91,6 +89,7 @@ class TestChk():
     def test_checkout_ABCDECBAABCABBAAAEEAA(self):
             assert checkout('ABCDECBAABCABBAAAEEAA') == 665
          
+
 
 
 
