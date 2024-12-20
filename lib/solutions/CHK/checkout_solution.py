@@ -62,6 +62,7 @@ def checkout(skus):
             item_counts[item] = item_counts.get(item, 0) + 1
 
         bogof_offer(item_counts, item_bogof_offers)
+        special_offer(item_counts,)
         
         total = calculate_checkout(item_counts, item_base_prices)
 
@@ -69,7 +70,17 @@ def checkout(skus):
         return total
 
 def special_offer(item_counts, item_special_offers):
+     total =0
      for item, deals in item_special_offers.items():
+          #iterate backwarsd through the deals as they are sorted
+          for deals in sorted(deals.keys(), reverse=True):
+               #lower count until below the amount needed for the deal
+               
+    return total
+               
+               
+            
+
           
         
 
@@ -140,5 +151,7 @@ class TestChk():
         assert checkout('FFFFF') == 40
     def test_checkout_6F(self):
         assert checkout('FFFFFF') == 40
+
          
+
 
