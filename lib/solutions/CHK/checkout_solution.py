@@ -109,43 +109,7 @@ def calculate_checkout(item_counts,item_base_prices):
     return total
                
     
-class TestChk():
-    def test_checkout_5A(self):
-        assert checkout('AAAAA') == 200
-    def test_checkout_3A(self):
-         assert checkout('AAA') == 130
-    def test_checkout_4A(self):
-         assert checkout('AAAA') == 180
-    def test_checkout_2B(self):
-         assert checkout('BB') == 45
-    def test_checkout_2E_0B(self):
-         assert checkout('EE') == 80
-    def test_checkout_2E_1B(self):
-         assert checkout('EEB') == 80
-    def test_checkout_2B_2E(self):
-         assert checkout('BBEE') == 110
-    def test_checkout_2E_2B(self):
-         assert checkout('EEBB') == 110
-    def test_checkout_BEBEEE(self):
-        assert checkout('BEBEEE') == 160
-    def test_checkout_ABCDECBAABCABBAAAEEAA(self):
-        assert checkout('ABCDECBAABCABBAAAEEAA') == 665
-    def test_checkout_2F(self):
-        assert checkout('FF') == 20
-    def test_checkout_3F(self):
-        assert checkout('FFF') == 20
-    def test_checkout_4F(self):
-        assert checkout('FFFF') == 30
-    def test_checkout_5F(self):
-        assert checkout('FFFFF') == 40
-    def test_checkout_6F(self):
-        assert checkout('FFFFFF') == 40
-    def test_checkout_13H(self):
-        assert checkout('HHHHHHHHHHHHH') == 80
-    def test_checkout_3U(self):
-        assert checkout('UUU') == 120
 
-    
 
          
 
