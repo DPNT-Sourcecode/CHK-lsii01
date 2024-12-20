@@ -14,7 +14,7 @@ def checkout(skus):
         'H': 10,
         'I': 35,
         'J': 60,
-        'K': 80,
+        'K': 70,
         'L': 90,
         'M': 15,
         'N': 40,
@@ -38,11 +38,9 @@ def checkout(skus):
              'A': {3: 130, 5: 200},
              'B': {2: 45},
              'H': {5: 45, 10: 80},
-             'K': {2: 150},
+             'K': {2: 120},
              'P': {5: 200},
-             'Q': {3: 80},
-             'V': {2: 90, 3: 130},
-             'W': {3: 130}
+             'Q': {3: 80}
         }
 
         item_bogof_offers = {
@@ -192,3 +190,7 @@ class TestChk():
         assert checkout('TSY') == 45
     def test_checkout_1T(self):
         assert checkout('T') == 20
+    def test_checkout_1K(self):
+        assert checkout('K') == 70
+    def test_checkout_alphabet(self):
+        assert checkout('ABCDEFGHIJKLMNOPQRSTUVW') == 795
