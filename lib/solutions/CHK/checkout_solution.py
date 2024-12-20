@@ -62,19 +62,23 @@ def checkout(skus):
             item_counts[item] = item_counts.get(item, 0) + 1
 
         bogof_offer(item_counts, item_bogof_offers)
-        special_offer(item_counts,)
+        total = special_offer(item_counts,item_special_offers)
         
-        total = calculate_checkout(item_counts, item_base_prices)
+        total += calculate_checkout(item_counts, item_base_prices)
 
 
         return total
 
 def special_offer(item_counts, item_special_offers):
-     total =0
-     for item, deals in item_special_offers.items():
+    total =0
+    for item, deals in item_special_offers.items():
           #iterate backwarsd through the deals as they are sorted
-          for deals in sorted(deals.keys(), reverse=True):
-               #lower count until below the amount needed for the deal
+        for deals in sorted(deals.keys(), reverse=True):
+            count = item_counts[item] // deals
+            if count > 0:
+                total += count * item_special_offers[item][deals]
+                item_counts[item] -= count * deals
+
                
     return total
                
@@ -96,26 +100,8 @@ def bogof_offer(item_counts, item_bogof_offers):
 
 def calculate_checkout(item_counts,item_base_prices):
     total = 0
-    
     for item, count in item_counts.items():
-        if item == 'A':
-            
-            if count >=5:
-                 total += ((count // 5 * 200) + (count % 5 // 3 * 130) + (count % 5 % 3 * 50))
-            elif count >=3:
-                 total += (count // 3 * 130) + (count % 3 * 50)
-            else:
-                 total += count * 50
-        elif item =='B':
-            #Handle E special offer
-            if count >= 2:
-                 total += (count //2 * 45) + (count % 2 * 30)
-            else:
-                 total += count * 30
-            
-        else:
-             total += count * item_base_prices[item]
-
+        total += count * item_base_prices[item]
 
     return total
                
@@ -153,5 +139,6 @@ class TestChk():
         assert checkout('FFFFFF') == 40
 
          
+
 
 
