@@ -54,9 +54,10 @@ def checkout(skus):
         
 
         item_counts = {}
-        triple_count = 0
 
-        triple_item_counts={}
+        triple_sets = {}
+ 
+
         total = 0
 
         for item in skus:
@@ -65,14 +66,14 @@ def checkout(skus):
             
             item_counts[item] = item_counts.get(item, 0) + 1
             
+
             if item in item_triple_offers:
-                triple_item_counts[item_base_prices[item]] = triple_item_counts.get(item_base_prices[item], 0) + 1
+                triple_sets[item] = triple_sets.get(item, 0 ) + 1
 
-            
-            
+        
 
 
-    
+        
 
         bogof_offer(item_counts, item_bogof_offers)
         total += special_offer(item_counts,item_special_offers)
@@ -109,11 +110,7 @@ def bogof_offer(item_counts, item_bogof_offers):
             else:
                 item_counts[deal['letter']] = 0
 
-def handle_triples(triple_item_counts, item_counts, item_base_prices):
-    total = 0
-    
-    for item, count in triple_item_counts.items():
-        pass
+
 
 
 
@@ -205,7 +202,3 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
-
-
-
-
