@@ -30,7 +30,8 @@ def checkout(skus):
                 item_counts['B'] = item_counts.get('B', 0) - 1
 
             #Handle special offers
-            if item =='B':
+            if item == 'B':
+                print (item_special_offers.get(item, 0))
                 total += item_special_offers[item][1]
                 item_counts[item] = 0
             elif item == 'A':
@@ -49,5 +50,6 @@ def checkout(skus):
 
 class TestChk():
      def test_checkout_5B(self):
-          assert 
+          assert checkout('BBBBB') == 120
+
 
