@@ -118,9 +118,11 @@ def triple_offers(item_counts, item_triple_offers, item_base_prices):
         triple_items.sort(key=lambda x: item_base_prices[x], reverse=True)
 
         total += 45
+        for i in range(3):
+            item = triple_items[i]
+
         triple_items = triple_items[3::]
-    for item in triple_items:
-        item_counts[item] -=1
+   
     return total
 
 
@@ -214,6 +216,7 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
 
 
 
