@@ -67,18 +67,7 @@ def checkout(skus):
             
             if item in item_triple_offers:
                 triple_item_counts[item_base_prices[item]] = triple_item_counts.get(item_base_prices[item], 0) + 1
-                triple_count +=1
-        #this will give us the value of the item as the key and the count as the value
-        #we can then remove the counts from the highest value items first
-        sets_of_3 = 0      
-        while triple_count > 3:
-            for value in sorted(triple_item_counts.keys(), reverse=True):
-                triple_item_counts[value] -= 1
-                triple_count -=1
-                sets_of_3 +=1
-            if sets_of_3 == 3:
-                total += 45
-                sets_of_3 = 0
+
             
             
 
@@ -119,6 +108,13 @@ def bogof_offer(item_counts, item_bogof_offers):
                 item_counts[deal['letter']] -= count
             else:
                 item_counts[deal['letter']] = 0
+
+def handle_triples(triple_item_counts, item_counts, item_base_prices):
+    total = 0
+    
+    for item, count in triple_item_counts.items():
+        pass
+
 
 
 def calculate_checkout(item_counts,item_base_prices):
@@ -209,6 +205,7 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
 
 
 
