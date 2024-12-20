@@ -70,6 +70,7 @@ def calculate_checkout(item_counts,item_base_prices):
     return total
 
                
+    
 class TestChk():
     def test_checkout_5A(self):
         assert checkout('AAAAA') == 200
@@ -95,7 +96,10 @@ class TestChk():
         assert checkout('FF') == 20
     def test_checkout_3F(self):
         assert checkout('FFF') == 20
+    def test_checkout_4F(self):
+         assert checkout('FFFF') == 30
          
+
 
 
 
