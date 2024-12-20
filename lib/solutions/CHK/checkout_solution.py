@@ -77,11 +77,12 @@ def checkout(skus):
         if set_counter > 2:
             #a set exists and we need to find the highest value set of 3 keys
             #i.e remove all keys with the highest value first and then the next highest value
-            for item in sorted(triple_sets, key=triple_sets.get, reverse=True):
+            for item in sorted(triple_sets, reverse=True):
                 if triple_sets[item] > 0:
                     triple_sets[item] -= 1
                     set_counter -= 1
                     totalSets +=1 
+                    item_counts[item] -= 1
                     if set_counter == 2:
                         break
                 
@@ -219,3 +220,4 @@ class TestChk():
         assert checkout('STXSTX') == 90
     def test_checkout_3S_1Z(self):
         assert checkout('SSSZ') == 65
+
