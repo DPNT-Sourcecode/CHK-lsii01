@@ -73,8 +73,11 @@ def checkout(skus):
                     total += 45
                     print(total)
                     triple_count = 0
-                    for triple_item in triple_item_counts.keys():
-                        item_counts[triple_item] -= 1
+                    while triple_count > 0:
+                        highestItem = max(triple_item_counts, key=triple_item_counts.get)
+                        triple_item_counts[highestItem] -= 1
+                        triple_count -= 1
+
 
                     triple_item_counts = {}
 
@@ -83,7 +86,7 @@ def checkout(skus):
         bogof_offer(item_counts, item_bogof_offers)
         total += special_offer(item_counts,item_special_offers)
 
-        
+        print(item_counts)
         total += calculate_checkout(item_counts, item_base_prices)
 
 
@@ -105,10 +108,7 @@ def special_offer(item_counts, item_special_offers):
     return total
                
                
-            
-
-          
-        
+               
 
 def bogof_offer(item_counts, item_bogof_offers):
     for item, deal in item_bogof_offers.items():
@@ -189,5 +189,3 @@ class TestChk():
 
     def test_checkout_3S(self):
         assert checkout('SSS') == 45
-
-
