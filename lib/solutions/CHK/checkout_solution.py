@@ -56,6 +56,14 @@ class TestChk():
          assert checkout('AAAA') == 180
     def test_checkout_2B(self):
          assert checkout('BB') == 45
+    def test_checkout_2E_0B(self):
+         assert checkout('EE') == 80
+    def test_checkout_2E_1B(self):
+         assert checkout('EEB') == 80
+    def test_checkout_2E_2B(self):
+         assert checkout('EEBB') == 110
+
+
 
 
 
