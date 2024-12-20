@@ -59,6 +59,9 @@ def checkout(skus):
  
 
         total = 0
+        set_counter=0
+
+        totalSets=0
 
         for item in skus:
             if not item in item_base_prices.keys():
@@ -69,6 +72,20 @@ def checkout(skus):
 
             if item in item_triple_offers:
                 triple_sets[item] = triple_sets.get(item, 0 ) + 1
+                set_counter +=1
+        
+        if set_counter > 2:
+            #a set exists and we need to find the highest value set of 3 keys
+            #i.e remove all keys with the highest value first and then the next highest value
+            for item in sorted(triple_sets, key=triple_sets.get, reverse=True):
+                if triple_sets[item] > 0:
+                    triple_sets[item] -= 1
+                    set_counter -= 1
+                    totalSets +=1 
+                    if set_counter == 2:
+                        break
+                
+        total += totalSets * 45
 
         
 
