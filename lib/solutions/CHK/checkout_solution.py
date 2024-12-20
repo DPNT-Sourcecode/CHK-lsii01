@@ -75,7 +75,8 @@ def special_offer(item_counts, item_special_offers):
         if item not in item_counts.keys():
             continue
           #iterate backwarsd through the deals as they are sorted
-        for deals in sorted(deals.keys()):
+        for deals in sorted(deals.keys(), reverse=True):
+            print(deals)
             count = item_counts[item] // deals
             if count > 0:
                 total += count * item_special_offers[item][deals]
@@ -139,8 +140,15 @@ class TestChk():
         assert checkout('FFFFF') == 40
     def test_checkout_6F(self):
         assert checkout('FFFFFF') == 40
+    def test_checkout_13H(self):
+        assert checkout('HHHHHHHHHHHHH') == 80
+    def test_checkout_3U(self):
+        assert checkout('UUU') == 120
+
+    
 
          
+
 
 
 
