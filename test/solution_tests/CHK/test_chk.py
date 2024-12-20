@@ -25,6 +25,3 @@ class TestChk():
             assert checkout_solution('ABCDECBAABCABBAAAEEAA') == 665
          
 
-
-
-
