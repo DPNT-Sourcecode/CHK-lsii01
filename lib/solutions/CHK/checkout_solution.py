@@ -46,7 +46,7 @@ def checkout(skus):
         item_bogof_offers = {
              'E': {'letter': 'B', 'needed': 2, 'free': 1},
              'F': {'letter':'F', 'needed':3, 'free': 1 },
-             'N': {'letter':'M', 'needed':4, 'free': 1 },
+             'N': {'letter':'M', 'needed':3, 'free': 1 },
              'R': {'letter':'Q', 'needed':3, 'free': 1},
              'U': {'letter': 'U', 'needed': 4, 'free': 1}
         }
@@ -152,5 +152,13 @@ class TestChk():
         assert checkout('RRRRRRQQ') == 300
     def test_checkout_3R_1Q_1R_1Q_2R(self):
         assert checkout('RRRQRQRR') == 300
-
-    
+    def test_checkout_3N_1M(self):
+        assert checkout('NNNM') == 120
+    def test_checkout_6N_2M(self):
+        assert checkout('NNNNNNMM') == 240
+    def test_checkout_3N_1M_1N_1M_2N(self):
+        assert checkout('NNNMNMNN') == 240
+    def test_checkout_3V(self):
+        assert checkout('VVV') == 130   
+    def test_checkout_2V(self):
+        assert checkout('VV') == 90
