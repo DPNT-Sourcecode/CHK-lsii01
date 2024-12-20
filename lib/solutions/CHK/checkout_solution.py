@@ -56,6 +56,7 @@ def checkout(skus):
 
         item_counts = {}
         triple_count = 0
+        triple_item_counts={}
         total = 0
 
         for item in skus:
@@ -63,8 +64,15 @@ def checkout(skus):
                 return -1
             
             item_counts[item] = item_counts.get(item, 0) + 1
+            
             if item in item_triple_offers:
+                triple_item_counts[item] = triple_item_counts.get(item, 0 ) + 1
                 triple_count += 1
+                if triple_count == 3:
+                    total += 45
+                    for item in triple_item_counts.keys():
+                        item_counts[item] -= 1
+
 
         bogof_offer(item_counts, item_bogof_offers)
         total = special_offer(item_counts,item_special_offers)
@@ -171,3 +179,4 @@ class TestChk():
         assert checkout('VVVVV') == 220
     def test_checkout_3V_3V_1V(self):
         assert checkout('VVVVVVV') == 310
+
